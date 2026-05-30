@@ -73,7 +73,7 @@ def queryLeanPrefix (projectDir : System.FilePath) : IO System.FilePath := do
   return out.trimAscii.toString
 
 def buildLandrunArgs (spawnArgs : LandrunArgs) : Array String :=
-  let args := #["--best-effort", "--ro", "/", "--rw", "/dev", "-ldd", "-add-exec"]
+  let args := #["--best-effort", "--ro", "/", "--rw", "/dev", "--ldd", "--add-exec"]
   let args := spawnArgs.envPass.foldl (init := args) (fun acc env => acc ++ #["--env", env])
   let args := spawnArgs.readablePaths.foldl (init := args) (fun acc path => acc ++ #["--ro", path.toString])
   let args := spawnArgs.writablePaths.foldl (init := args) (fun acc path => acc ++ #["--rwx", path.toString])

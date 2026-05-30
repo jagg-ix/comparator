@@ -46,6 +46,12 @@ CASES=(
   entropic-physlib-lindblad-noether-capstone
   entropic-physlib-catept-recovers-wicks
   entropic-physlib-schrodinger-operator
+  # QTM + thermo-of-computation port (catept-main publication)
+  entropic-physlib-landauer-cost-positive
+  entropic-physlib-hawking-temperature-positive
+  entropic-physlib-qtm-channel-monoidal-id
+  entropic-physlib-qtm-landauer-shannon-capstone
+  entropic-physlib-qtm-leanmachine-safety
 )
 
 LOG_DIR="$(mktemp -d -t entropic-physlib-suite.XXXXXX)"

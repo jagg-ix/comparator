@@ -11,11 +11,14 @@
 #   3. is accepted by a fresh Lean kernel replay (independent of the
 #      project's own `lake build`).
 #
-# DEV-MODE ONLY on macOS: `landrun` is Linux-only, so this uses the
-# `scripts/fake-landrun.sh` shim, which performs NO sandboxing. The
-# kernel-replay guarantee is real; the anti-adversarial sandbox is not.
-# Use only to self-validate your own proofs, never to judge untrusted
-# Solution files.
+# Sandbox mode is selected by USE_REAL_LANDRUN:
+#   USE_REAL_LANDRUN=1  → real `landrun` from PATH (Linux/Landlock, CI). Full
+#                        anti-adversarial sandbox + kernel-replay guarantee.
+#   unset / 0 (default) → `scripts/fake-landrun.sh` shim, which performs NO
+#                        sandboxing (kernel-replay still real). Intended for
+#                        macOS dev — `landrun` is Linux-only. Use only to
+#                        self-validate your own proofs, never to judge
+#                        untrusted Solution files.
 #
 # Usage:
 #   scripts/catept-comparator-check.sh <project-dir> <case-dir> [--cache]
@@ -51,13 +54,44 @@ if [[ ! -x "$COMPARATOR_BIN" || ! -x "$LEAN4EXPORT_BIN" ]]; then
   ( cd "$COMPARATOR_ROOT" && lake build lean4export comparator )
 fi
 
-# 2. v4.29.0 comparator reads `landrun` / `lean4export` from PATH by
-#    name (it predates the COMPARATOR_* env overrides). Stage a bin dir.
+# 2. v4.29.0 comparator reads `landrun` / `lean4export` / `nanoda_bin`
+#    from PATH by name (it predates the COMPARATOR_* env overrides).
+#    Stage a bin dir.
 BINDIR="$COMPARATOR_ROOT/.lake/catept-check-bin"
 mkdir -p "$BINDIR"
-cp "$SHIM" "$BINDIR/landrun"
-chmod +x "$BINDIR/landrun"
+if [[ "${USE_REAL_LANDRUN:-0}" == "1" ]]; then
+  if ! command -v landrun >/dev/null 2>&1; then
+    echo ">> ERROR: USE_REAL_LANDRUN=1 but \`landrun\` is not on PATH." >&2
+    exit 2
+  fi
+  REAL_LANDRUN="$(command -v landrun)"
+  ln -sf "$REAL_LANDRUN" "$BINDIR/landrun"
+  SANDBOX_MODE="real-landrun ($REAL_LANDRUN)"
+else
+  cp "$SHIM" "$BINDIR/landrun"
+  chmod +x "$BINDIR/landrun"
+  SANDBOX_MODE="fake-landrun shim (NO sandbox, dev mode)"
+fi
 ln -sf "$LEAN4EXPORT_BIN" "$BINDIR/lean4export"
+
+# Optional second kernel (gold standard, per the Lean reference's
+# "Validating Proofs" section). Resolve `nanoda_bin` from $NANODA_BIN,
+# then PATH, then the conventional cargo build location. Only needed
+# when the case's config.json has "enable_nanoda": true.
+NANODA_BIN="${NANODA_BIN:-}"
+if [[ -z "$NANODA_BIN" ]]; then
+  if command -v nanoda_bin >/dev/null 2>&1; then
+    NANODA_BIN="$(command -v nanoda_bin)"
+  elif [[ -x /tmp/nanoda_lib/target/release/nanoda_bin ]]; then
+    NANODA_BIN="/tmp/nanoda_lib/target/release/nanoda_bin"
+  fi
+fi
+if [[ -n "$NANODA_BIN" && -x "$NANODA_BIN" ]]; then
+  ln -sf "$NANODA_BIN" "$BINDIR/nanoda_bin"
+  echo ">> nanoda available: $NANODA_BIN (gold-standard dual-kernel check enabled when config requests it)"
+else
+  echo ">> nanoda not found — only cases with enable_nanoda=false will run (Lean kernel only)."
+fi
 
 # 3. Stage the case files into the project and register the libs.
 cp "$CASE_DIR/Challenge.lean" "$PROJECT_DIR/Challenge.lean"
@@ -83,7 +117,7 @@ if [[ "$DO_CACHE" == "--cache" ]]; then
 fi
 
 # 5. Run comparator.
-echo ">> running comparator (v4.29.0, dev-mode / no sandbox) ..."
+echo ">> running comparator (sandbox: $SANDBOX_MODE) ..."
 cd "$PROJECT_DIR"
 set +e
 PATH="$BINDIR:$PATH" lake env "$COMPARATOR_BIN" comparator_config.json

@@ -1,5 +1,5 @@
-import Physlib.CATEPT.NoetherHerglotz.SchrodingerHerglotzTDSE
-open Physlib.CATEPT.NoetherHerglotz
+import Physlib.QuantumMechanics.Schrodinger.HerglotzBridge
+open Physlib.QuantumMechanics.Schrodinger.HerglotzBridge
 /-- Challenge: **TDSE general Heisenberg-picture ⇒ Herglotz dissipation sign.**
 A density-matrix magnitude decay (`d/dt rhoMag(ρ(t)) = −γ·rhoMag`, with γ ≥ 0)
 gives the Herglotz `α := −γ ≤ 0` structurally — no extra hypothesis. -/

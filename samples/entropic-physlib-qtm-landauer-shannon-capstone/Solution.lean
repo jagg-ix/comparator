@@ -1,10 +1,10 @@
-import Physlib.CATEPT.QTM.LandauerShannonDuality
+import Physlib.Thermodynamics.LandauerShannonDuality
 open Physlib.QuantumMechanics.QuantumChannel
 open Physlib.Thermodynamics.Landauer
-open Physlib.CATEPT.QTM.CompCommSplit
-open Physlib.CATEPT.QTM.LandauerShannonDuality
+open Physlib.QuantumMechanics.QuantumChannel.ComputationCommunicationSplit
+open Physlib.Thermodynamics.LandauerShannonDuality
 /-- Solution: discharged by
-`Physlib.CATEPT.QTM.LandauerShannonDuality.qtmFull_landauer_shannon`. -/
+`Physlib.Thermodynamics.LandauerShannonDuality.qtmFull_landauer_shannon`. -/
 theorem qtm_landauer_shannon_capstone
     {backend : QuantumChannelBackend}
     (R : CATEPTChannelPair backend) (T : ℝ)

@@ -1,5 +1,5 @@
-import Physlib.CATEPT.NoetherDissipation.LindbladNoether
-open Physlib.CATEPT Physlib.CATEPT.NoetherDissipation
+import Physlib.QuantumMechanics.Lindblad.NoetherDefect
+open Physlib.QuantumMechanics.Lindblad.NoetherDefect
 /-- Challenge: the Lindblad Noether defect equals `‖L ψ‖²`, stated with `sorry`. -/
 theorem lindblad_defect_eq_normSq
     {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]

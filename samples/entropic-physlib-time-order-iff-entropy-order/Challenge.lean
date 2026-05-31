@@ -1,5 +1,5 @@
-import Physlib.CATEPT.SecondLawEntropicArrow
-open Physlib.CATEPT
+import Physlib.Thermodynamics.SecondLaw
+open Physlib.Thermodynamics.SecondLaw
 /-- Challenge: the **side effect, not cause** identity — the time order is
 *exactly* the entropy order, so τ_ent carries no ordering content of its own. -/
 theorem entropic_time_order_iff_entropy_order

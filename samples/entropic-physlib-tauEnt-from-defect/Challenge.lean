@@ -1,5 +1,5 @@
-import Physlib.CATEPT.NoetherDissipation.EntropyProduction
-open Physlib.CATEPT.NoetherDissipation
+import Physlib.StatisticalMechanics.EntropyProduction
+open Physlib.StatisticalMechanics.EntropyProduction
 /-- Challenge: entropic time is monotone **as a side effect** of the non-negative
 dissipative defect (the Noether-balance leakage); not posited but derived. -/
 theorem entropic_time_monotone_from_dissipation

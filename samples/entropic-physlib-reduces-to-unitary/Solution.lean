@@ -1,7 +1,7 @@
-import Physlib.CATEPT.NonHermitianWickRotation
-open Physlib.CATEPT QuantumMechanics.FiniteTarget
+import Physlib.QuantumMechanics.NonHermitian.WickRotation
+open Physlib.QuantumMechanics.NonHermitian.WickRotation
 /-- Solution: discharged by the library theorem
-`Physlib.CATEPT.reduces_to_unitary_at_H_I_zero`. -/
+`Physlib.QuantumMechanics.NonHermitian.WickRotation.reduces_to_unitary_at_H_I_zero`. -/
 theorem entropic_time_reduces_to_unitary
     {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
     [CompleteSpace H] [FiniteDimensional ℂ H]

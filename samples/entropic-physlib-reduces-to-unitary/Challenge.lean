@@ -1,5 +1,5 @@
-import Physlib.CATEPT.NonHermitianWickRotation
-open Physlib.CATEPT QuantumMechanics.FiniteTarget
+import Physlib.QuantumMechanics.NonHermitian.WickRotation
+open Physlib.QuantumMechanics.NonHermitian.WickRotation
 /-- Challenge: at `H_I = 0` (the TiSE / Hermitian limit), entropic time **reduces
 to unitary time** — the eigen-evolution factor is the pure unitary phase, its
 modulus is `1` (norm preserved), and the operator complex Hamiltonian collapses

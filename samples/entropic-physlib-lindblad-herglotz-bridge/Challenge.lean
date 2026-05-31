@@ -1,5 +1,5 @@
-import Physlib.CATEPT.NoetherHerglotz.LindbladHerglotz
-open Physlib.CATEPT.NoetherHerglotz
+import Physlib.QuantumMechanics.Lindblad.HerglotzBridge
+open Physlib.QuantumMechanics.Lindblad.HerglotzBridge
 /-- Challenge: **structural Lindblad → Herglotz dissipation-sign bridge.** The
 Lindblad-constructed Herglotz balance has `α ≤ 0` automatically — i.e. the
 Herglotz variational dissipation sign follows from `L†L ⪰ 0` (the Lindblad

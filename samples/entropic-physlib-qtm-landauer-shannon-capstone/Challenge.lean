@@ -1,8 +1,8 @@
-import Physlib.CATEPT.QTM.LandauerShannonDuality
+import Physlib.Thermodynamics.LandauerShannonDuality
 open Physlib.QuantumMechanics.QuantumChannel
 open Physlib.Thermodynamics.Landauer
-open Physlib.CATEPT.QTM.CompCommSplit
-open Physlib.CATEPT.QTM.LandauerShannonDuality
+open Physlib.QuantumMechanics.QuantumChannel.ComputationCommunicationSplit
+open Physlib.Thermodynamics.LandauerShannonDuality
 /-- Challenge (CATEPT capstone): any CATEPT channel pair respecting the
 Landauer floor at temperature `T` has total info cost ≥ `landauerCost T`. -/
 theorem qtm_landauer_shannon_capstone

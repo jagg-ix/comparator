@@ -1,7 +1,7 @@
-import Physlib.CATEPT.NoetherHerglotz.SchrodingerHerglotzTDSE
-open Physlib.CATEPT.NoetherHerglotz
+import Physlib.QuantumMechanics.Schrodinger.HerglotzBridge
+open Physlib.QuantumMechanics.Schrodinger.HerglotzBridge
 /-- Solution: discharged by the library theorem
-`Physlib.CATEPT.NoetherHerglotz.ofTDSEMagnitudeDecay_alpha_nonpos`. -/
+`Physlib.QuantumMechanics.Schrodinger.HerglotzBridge.ofTDSEMagnitudeDecay_alpha_nonpos`. -/
 theorem tdse_magnitude_herglotz_alpha_nonpos
     {ρ : Type*} (D : TDSEMagnitudeDecay ρ)
     (A : ℝ → ℝ) (hA : ∀ t, HasDerivAt A (- D.gamma t) t) :

@@ -1,7 +1,7 @@
-import Physlib.CATEPT.NoetherHerglotz.LindbladHerglotz
-open Physlib.CATEPT.NoetherHerglotz
+import Physlib.QuantumMechanics.Lindblad.HerglotzBridge
+open Physlib.QuantumMechanics.Lindblad.HerglotzBridge
 /-- Solution: discharged by the library theorem
-`Physlib.CATEPT.NoetherHerglotz.ofLindbladRate_alpha_nonpos`. -/
+`Physlib.QuantumMechanics.Lindblad.HerglotzBridge.ofLindbladRate_alpha_nonpos`. -/
 theorem lindblad_herglotz_alpha_nonpos
     {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
     [CompleteSpace H] [FiniteDimensional ℂ H]

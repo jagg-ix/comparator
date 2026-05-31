@@ -1,7 +1,7 @@
-import Physlib.CATEPT.NoetherDissipation.LindbladNoether
-open Physlib.CATEPT Physlib.CATEPT.NoetherDissipation
+import Physlib.QuantumMechanics.Lindblad.NoetherDefect
+open Physlib.QuantumMechanics.Lindblad.NoetherDefect
 /-- Solution: same statement, discharged by the library theorem
-`Physlib.CATEPT.NoetherDissipation.lindbladNoetherDefect_eq_normSq`. -/
+`Physlib.QuantumMechanics.Lindblad.NoetherDefect.lindbladNoetherDefect_eq_normSq`. -/
 theorem lindblad_defect_eq_normSq
     {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
     [CompleteSpace H] [FiniteDimensional ℂ H]

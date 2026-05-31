@@ -1,7 +1,7 @@
-import Physlib.CATEPT.NonHermitianPropagator
-open Physlib.CATEPT
+import Physlib.QuantumMechanics.NonHermitian.Propagator
+open Physlib.QuantumMechanics.NonHermitian.Propagator
 /-- Solution: discharged by the library theorem
-`Physlib.CATEPT.nonHermitian_schrodinger_operator`. -/
+`Physlib.QuantumMechanics.NonHermitian.Propagator.nonHermitian_schrodinger_operator`. -/
 theorem schrodinger_operator_eq
     {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
     [CompleteSpace H] [FiniteDimensional ℂ H]

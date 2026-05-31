@@ -1,5 +1,5 @@
-import Physlib.CATEPT.MatrixHeisenberg
-open Physlib.CATEPT.MatrixHeisenberg
+import Physlib.QuantumMechanics.Liouville.Schrodinger
+open Physlib.QuantumMechanics.Liouville.Schrodinger
 /-- Challenge: **doubled-space mapping theorem (generator-parametric).** For
 any effective Liouville generator `H_eff(t)`, density-matrix evolution admits a
 Liouville-space (matrix-Heisenberg) trajectory solving the doubled-space

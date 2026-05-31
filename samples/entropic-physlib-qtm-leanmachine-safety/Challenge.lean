@@ -1,8 +1,8 @@
-import Physlib.CATEPT.QTM.LeanMachine
+import Physlib.Thermodynamics.LeanMachineBridge
 open Physlib.QuantumMechanics.QuantumChannel
 open Physlib.Thermodynamics.Landauer
-open Physlib.CATEPT.QTM.LandauerShannonDuality
-open Physlib.CATEPT.QTM.LeanMachine
+open Physlib.Thermodynamics.LandauerShannonDuality
+open Physlib.Thermodynamics.LeanMachineBridge
 /-- Challenge (Lean machine as CATEPT region): every `LeanMachineBridge`
 satisfies the Landauer–Shannon lower bound on total info cost. -/
 theorem qtm_leanmachine_safety

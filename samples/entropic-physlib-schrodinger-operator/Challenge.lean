@@ -1,5 +1,5 @@
-import Physlib.CATEPT.NonHermitianPropagator
-open Physlib.CATEPT
+import Physlib.QuantumMechanics.NonHermitian.Propagator
+open Physlib.QuantumMechanics.NonHermitian.Propagator
 /-- Challenge: operator-level non-Hermitian Schrödinger equation
 `iℏ ∂_t U = H_C U`, stated with `sorry`. -/
 theorem schrodinger_operator_eq

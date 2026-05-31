@@ -1,7 +1,7 @@
-import Physlib.CATEPT.NoetherDissipation.LindbladNoether
-open Physlib.CATEPT Physlib.CATEPT.NoetherDissipation QuantumMechanics.FiniteTarget
+import Physlib.QuantumMechanics.Lindblad.NoetherDefect
+open Physlib.QuantumMechanics.Lindblad.NoetherDefect
 /-- Solution: discharged by the library theorem
-`Physlib.CATEPT.NoetherDissipation.lindblad_noether_generates_entropic_time`. -/
+`Physlib.QuantumMechanics.Lindblad.NoetherDefect.lindblad_noether_generates_entropic_time`. -/
 theorem lindblad_noether_capstone
     {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
     [CompleteSpace H] [FiniteDimensional ℂ H]

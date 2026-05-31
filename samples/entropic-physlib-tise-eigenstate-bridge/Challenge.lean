@@ -1,5 +1,5 @@
-import Physlib.CATEPT.NonHermitianPropagator
-open Physlib.CATEPT
+import Physlib.QuantumMechanics.NonHermitian.Propagator
+open Physlib.QuantumMechanics.NonHermitian.Propagator
 /-- Challenge: TiSE-style eigenstate ↔ scalar-evolution bridge. On an
 `H_C`-eigenstate `H_C ψ = E_C ψ` (the non-Hermitian TiSE), the operator
 Schrödinger generator acts as the scalar coefficient `−i E_C/ℏ` — exactly the

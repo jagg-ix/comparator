@@ -1,7 +1,7 @@
-import Physlib.CATEPT.WickConsistency
-open Physlib.CATEPT QuantumInfo.Finite FieldSpecification
+import Physlib.QFT.Wick.Consistency
+open Physlib.QFT.Wick.Consistency
 /-- Solution: discharged by the library theorem
-`Physlib.CATEPT.catept_recovers_wicks_theorem`. -/
+`Physlib.QFT.Wick.Consistency.catept_recovers_wicks_theorem`. -/
 theorem catept_recovers_wicks_thm
     {d : Type*} [Fintype d] [DecidableEq d]
     {𝓕 : FieldSpecification} (S_R hbar : ℝ) (ρ σ : MState d) (φs : List 𝓕.FieldOp) :

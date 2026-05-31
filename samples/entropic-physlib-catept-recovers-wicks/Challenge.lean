@@ -1,5 +1,5 @@
-import Physlib.CATEPT.WickConsistency
-open Physlib.CATEPT QuantumInfo.Finite FieldSpecification
+import Physlib.QFT.Wick.Consistency
+open Physlib.QFT.Wick.Consistency
 /-- Challenge: CAT/EPT embeds & recovers Wick's theorem — the standard
 contraction expansion is obtained by cancelling the non-zero entropic weight
 from the weighted identity (HepLean's `wicks_theorem` used as input). -/

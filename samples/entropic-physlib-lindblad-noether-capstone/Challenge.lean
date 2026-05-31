@@ -1,5 +1,5 @@
-import Physlib.CATEPT.NoetherDissipation.LindbladNoether
-open Physlib.CATEPT Physlib.CATEPT.NoetherDissipation QuantumMechanics.FiniteTarget
+import Physlib.QuantumMechanics.Lindblad.NoetherDefect
+open Physlib.QuantumMechanics.Lindblad.NoetherDefect
 /-- Challenge: the Lindblad–Noether capstone — `L†L ⪰ 0` generates the full
 chain (defect = ‖Lψ‖², entropy rate, monotone arrow, Green contraction). -/
 theorem lindblad_noether_capstone

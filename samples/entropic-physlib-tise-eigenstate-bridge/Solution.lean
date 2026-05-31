@@ -1,7 +1,7 @@
-import Physlib.CATEPT.NonHermitianPropagator
-open Physlib.CATEPT
+import Physlib.QuantumMechanics.NonHermitian.Propagator
+open Physlib.QuantumMechanics.NonHermitian.Propagator
 /-- Solution: discharged by the library theorem
-`Physlib.CATEPT.schrodingerGenerator_eigen`. -/
+`Physlib.QuantumMechanics.NonHermitian.Propagator.schrodingerGenerator_eigen`. -/
 theorem tise_eigenstate_scalar_evolution
     {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
     [CompleteSpace H] [FiniteDimensional ℂ H]

@@ -1,5 +1,5 @@
-import Physlib.CATEPT.NoetherHerglotz.Balance
-open Physlib.CATEPT.NoetherHerglotz
+import Physlib.ClassicalMechanics.Herglotz.Balance
+open Physlib.ClassicalMechanics.Herglotz.Balance
 /-- Challenge: **Noether–Herglotz integrated form** (Simoes–Colombo 2025, Prop 4.4).
 The Herglotz momentum `J_σ` satisfies `J̇ = α J` (`α = ∂L/∂z`); multiplying by the
 integrating factor `exp(−A) = exp(−∫α)` makes the *rescaled* momentum conserved. -/

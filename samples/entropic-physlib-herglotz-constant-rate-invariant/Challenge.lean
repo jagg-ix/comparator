@@ -1,5 +1,5 @@
-import Physlib.CATEPT.NoetherHerglotz.Instances
-open Physlib.CATEPT.NoetherHerglotz
+import Physlib.ClassicalMechanics.Herglotz.Instances
+open Physlib.ClassicalMechanics.Herglotz.Instances
 /-- Challenge: for the constant-rate Herglotz–Noether balance the rescaled
 invariant takes the explicit value `J₀`: `J(t) · exp(−A(t)) = J₀` for all t.
 A concrete witness that `HerglotzNoetherBalance` is non-vacuously inhabited. -/

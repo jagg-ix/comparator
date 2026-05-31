@@ -1,10 +1,10 @@
-import Physlib.CATEPT.QTM.LeanMachine
+import Physlib.Thermodynamics.LeanMachineBridge
 open Physlib.QuantumMechanics.QuantumChannel
 open Physlib.Thermodynamics.Landauer
-open Physlib.CATEPT.QTM.LandauerShannonDuality
-open Physlib.CATEPT.QTM.LeanMachine
+open Physlib.Thermodynamics.LandauerShannonDuality
+open Physlib.Thermodynamics.LeanMachineBridge
 /-- Solution: discharged by
-`Physlib.CATEPT.QTM.LeanMachine.LeanMachineBridge.leanMachine_safety`. -/
+`Physlib.Thermodynamics.LeanMachineBridge.LeanMachineBridge.leanMachine_safety`. -/
 theorem qtm_leanmachine_safety
     {backend : QuantumChannelBackend} (B : LeanMachineBridge backend) :
     landauerCost B.temperature ≤ totalInfoCost B.pair :=

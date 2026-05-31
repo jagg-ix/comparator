@@ -1,5 +1,5 @@
 import Physlib.QuantumMechanics.Lindblad.NoetherDefect
-open Physlib.QuantumMechanics.Lindblad.NoetherDefect
+open Physlib.QuantumMechanics.Lindblad.NoetherDefect Physlib.QuantumMechanics.Lindblad.GreensFunction Physlib.Thermodynamics.SecondLaw QuantumMechanics.FiniteTarget
 /-- Solution: discharged by the library theorem
 `Physlib.QuantumMechanics.Lindblad.NoetherDefect.lindblad_noether_generates_entropic_time`. -/
 theorem lindblad_noether_capstone

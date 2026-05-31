@@ -1,5 +1,5 @@
 import Physlib.QFT.Wick.Consistency
-open Physlib.QFT.Wick.Consistency
+open Physlib.QFT.Wick.Consistency QuantumInfo.Finite FieldSpecification
 /-- Solution: discharged by the library theorem
 `Physlib.QFT.Wick.Consistency.catept_recovers_wicks_theorem`. -/
 theorem catept_recovers_wicks_thm

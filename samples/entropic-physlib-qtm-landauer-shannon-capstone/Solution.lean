@@ -7,7 +7,7 @@ open Physlib.Thermodynamics.LandauerShannonDuality
 `Physlib.Thermodynamics.LandauerShannonDuality.qtmFull_landauer_shannon`. -/
 theorem qtm_landauer_shannon_capstone
     {backend : QuantumChannelBackend}
-    (R : CATEPTChannelPair backend) (T : ℝ)
+    (R : EntropicChannelPair backend) (T : ℝ)
     (h : R.RespectsLandauer T) :
     landauerCost T ≤ totalInfoCost R :=
   qtmFull_landauer_shannon R T h

@@ -7,7 +7,7 @@ open Physlib.Thermodynamics.LandauerShannonDuality
 Landauer floor at temperature `T` has total info cost ≥ `landauerCost T`. -/
 theorem qtm_landauer_shannon_capstone
     {backend : QuantumChannelBackend}
-    (R : CATEPTChannelPair backend) (T : ℝ)
+    (R : EntropicChannelPair backend) (T : ℝ)
     (h : R.RespectsLandauer T) :
     landauerCost T ≤ totalInfoCost R := by
   sorry

@@ -5,33 +5,27 @@ on:
   pull_request:
   workflow_dispatch:
 
-# Opt all JavaScript actions onto Node.js 24 — the runner default is
-# being moved to Node 24 on 2026-06-16 and Node 20 will be removed on
-# 2026-09-16 per the GitHub Actions deprecation notice.
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           path: comparator
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: leanprover/lean4export
           ref: v4.30.0
           path: lean4export
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: Zouuup/landrun
           path: landrun
 
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v6
         with:
           go-version: 'stable'
 

@@ -1,0 +1,103 @@
+name: Entropic Physlib Core Suite
+
+# Independently re-validate the 12-case suite (samples/entropic-physlib-core-*)
+# against jagg-ix/physlib:entropic-physlib-core (Lean v4.30.0). Uploads
+# per-case logs as artifacts so reviewers can inspect kernel-replay traces.
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'samples/entropic-physlib-core-**'
+      - 'scripts/entropic-physlib-core-suite.sh'
+      - 'scripts/catept-comparator-check.sh'
+      - '.github/workflows/entropic-physlib-core-suite.yml'
+      - 'lean-toolchain'
+      - 'lakefile.toml'
+
+permissions:
+  contents: read
+
+jobs:
+  suite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout comparator (this branch)
+        uses: actions/checkout@v6
+        with:
+          path: comparator
+
+      - name: Checkout jagg-ix/physlib @ entropic-physlib-core
+        uses: actions/checkout@v6
+        with:
+          repository: jagg-ix/physlib
+          ref: entropic-physlib-core
+          path: physlib
+
+      - name: Checkout landrun (Linux Landlock sandbox)
+        uses: actions/checkout@v6
+        with:
+          repository: Zouuup/landrun
+          path: landrun
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version: 'stable'
+
+      - name: Build landrun
+        working-directory: landrun
+        run: go build -o landrun cmd/landrun/main.go
+
+      - name: Install Lean toolchain + build comparator + lean4export
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: comparator
+          build-args: comparator lean4export
+          test: false
+          lint: false
+
+      - name: Fetch Mathlib cache for physlib
+        working-directory: physlib
+        run: lake exe cache get || true
+
+      - name: Build physlib (Physlib + QuantumInfo)
+        working-directory: physlib
+        run: lake build Physlib QuantumInfo
+
+      - name: Stage landrun + lean4export on PATH
+        run: |
+          mkdir -p "$GITHUB_WORKSPACE/bin"
+          ln -sf "$GITHUB_WORKSPACE/comparator/.lake/packages/lean4export/.lake/build/bin/lean4export" "$GITHUB_WORKSPACE/bin/lean4export"
+          ln -sf "$GITHUB_WORKSPACE/landrun/landrun" "$GITHUB_WORKSPACE/bin/landrun"
+          echo "$GITHUB_WORKSPACE/bin" >> "$GITHUB_PATH"
+
+      - name: Run entropic-physlib-core comparator suite (real landrun)
+        env:
+          USE_REAL_LANDRUN: "1"
+        run: |
+          chmod +x comparator/scripts/entropic-physlib-core-suite.sh
+          chmod +x comparator/scripts/catept-comparator-check.sh
+          bash comparator/scripts/entropic-physlib-core-suite.sh "$GITHUB_WORKSPACE/physlib"
+
+      - name: Collect per-case logs into workspace
+        if: always()
+        run: |
+          set +e
+          mkdir -p "$GITHUB_WORKSPACE/suite-logs"
+          # The suite uses `mktemp -d -t entropic-physlib-core-suite.XXXXXX`.
+          # On GitHub-hosted ubuntu, $TMPDIR is /tmp, so the dir is /tmp/entropic-physlib-core-suite.*.
+          for d in /tmp/entropic-physlib-core-suite.*; do
+            [ -d "$d" ] && cp -r "$d"/* "$GITHUB_WORKSPACE/suite-logs/" 2>/dev/null || true
+          done
+          ls -la "$GITHUB_WORKSPACE/suite-logs/" || true
+
+      - name: Upload per-case logs as artifact
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: entropic-physlib-core-suite-logs
+          path: suite-logs/
+          if-no-files-found: warn
+          retention-days: 14

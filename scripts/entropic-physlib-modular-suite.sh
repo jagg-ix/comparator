@@ -33,7 +33,7 @@ DO_CACHE="${2:-}"
 
 PHYSLIB="$(cd "$PHYSLIB" && pwd)"
 
-# The 5 Connes–Rovelli / QIF cases covering the modular-flow extension
+# The 6 Connes–Rovelli / QIF cases covering the modular-flow extension
 # of the entropic-time spine on jagg-ix/physlib:entropic-physlib-modular
 # (which sits on top of jagg-ix/physlib:entropic-physlib-core).
 CASES=(
@@ -44,6 +44,8 @@ CASES=(
   # Constructive H_θ from a density matrix (off-equilibrium extension)
   entropic-physlib-modular-h-theta-self-adjoint
   entropic-physlib-modular-kms-qif-of-state-tise
+  # Constructive σ_t group law via NormedSpace.exp_add_of_commute
+  entropic-physlib-modular-constructive-sigma-group-law
 )
 
 LOG_DIR="$(mktemp -d -t entropic-physlib-modular-suite.XXXXXX)"
